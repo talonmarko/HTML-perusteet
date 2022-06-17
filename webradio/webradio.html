@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebRadio v0.1</title>
+<meta charset="UTF-8" />
+<style>
+*, html{
+	padding: 0;
+	margin: 0;
+}
+
+.slidecontainer {
+	width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin-top: 30px;
+  height: 40px;
+  border-radius: 2px;
+  background: #A8C64E;
+  outline: none;
+  opacity: 0.9;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 50px;
+  border-radius: 2px;
+  background: #000;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 20%;
+  background: #A8C64E;
+  cursor: pointer;
+}
+
+body{
+	font-family: digital-7;
+	font-size: 20px;
+}
+
+#webradio{
+	border: 4px solid #000;
+	box-shadow: 0px 0px 15px #000;
+	background-color: #424142;
+	background: linear-gradient(0deg, #979899, #424142);
+	width: 400px;
+	margin: 30px auto auto;
+	height: 300px;
+	padding: 20px;
+	text-align: center;
+}
+	
+#controls{
+	margin-top: 5px;
+	width: 100%;
+}
+
+#controls button{
+	width: 16%;
+}
+
+
+label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+	font-size: 25px;
+	text-transform: uppercase;
+	//text-shadow: 1px 1px 2px #000;
+}
+
+select{
+	background-color: #A8C64E;
+	width: 70%;
+	overflow: hidden;
+} 
+select option{
+	font-family: monospace;
+	font-size: 25px;
+	text-align: center;
+	text-shadow: 2px 2px 2px #000;
+}
+
+#controls button{
+	background-color: #A8C64E;
+	height: 40px;
+	border-radius: 25px;
+}
+select option{
+	font-size: 20px;
+}
+
+select:focus{
+	outline: none;
+}
+
+#controls button rng_volume{
+	background-color: #A8C64E;
+}
+
+
+
+	
+</style>
+</head>
+<body>
+
+
+<div id="webradio">
+	<label for="casts">casts</label>
+	
+	<select name="casts" id="stations" size="3" onChange="changeStation(this.value);">
+		<option value="http://stream.bauermedia.fi/basso/bassoradio_128.mp3">Basso</option>
+		<option value="https://stream.bauermedia.fi/radionova/radionova_128.mp3">Radio Nova</option>
+		<option value="https://stream.bauermedia.fi/nrj/nrj_128.mp3">NRJ</option>
+
+	</select>
+	
+	
+	<label for="controls">controls</label>
+	<div id="controls">
+	<button value="play" id="btn_play">&#x23f5</button>
+	<button value="pause" id="btn_pause">&#x23f8</button>
+	<button value="stop" id="btn_stop">&#x23f9</button>
+	<button value="previous" id="btn_previous">&#x23ee</button>
+	<button value="next" id="btn_next">&#x23ed</button>
+	</div>
+	<div class="slidecontainer">
+	<input type="range" min="1" max="100" value="20" class="slider" id="myRange" onChange="changeVolume(this.value);">
+	
+</div>
+	
+	<div id=""></div>
+	<div id=""></div>
+	<div id=""></div>
+
+</div>
+
+<audio src="#" autoplay hidden volume="0.25" id="NetCast"></audio>
+
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+//output.innerHTML = slider.value;
+
+slider.onInput = function(){
+  output.innerHTML = this.value;
+}
+
+function changeStation(what){
+	var element = document.getElementById("NetCast");	
+	element.src = what;
+}
+
+function playStation(){
+	var element = document.getElementById("netCast");
+		element.play();
+}
+		
+function pauseStation(){
+	var element = document.getElementById("netCast");
+		element.pause();
+}
+		
+function stopStation(){
+	var element = document.getElementById("netCast");
+		element.stop();
+}
+		
+function previousStation(){
+	var stations = document.getElementById("stations");
+		if(stations.selectedIndex >= 1){
+		stations.selectedIndex--;
+		
+		
+		changeStation(stations.value);
+		}
+	}
+		
+function nextStation(){
+		var stations = document.getElementById("stations");
+			if(stations.selectedIndex <= 3 ){
+			stations.selectedIndex++;
+	}
+}		
+
+function changeVolume(volume){
+	var element = document.getElementById("netCast");
+		element.volume=volume/100;
+}		
+		
+</script>
+</body>
+
+</html>

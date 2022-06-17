@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PHTML-perusteet</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+LATAA MERKKI UTF-8sta
+
+<a href="#">&#9776;</a>
+
+ESIM 9776!

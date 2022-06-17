@@ -1,0 +1,96 @@
+<?php
+if(isset($_POST["etunimi"])){
+$etunimi = $_POST["etunimi"];
+}
+
+
+
+if(isset($_POST["sukunimi"])){
+$sukunimi = $_POST["sukunimi"];
+}
+
+
+
+if(isset($_POST["nimike"])){
+$nimike = $_POST["nimike"];
+}
+
+
+
+if(isset($_POST["ika"])){
+$ika = $_POST["ika"];
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+h2, input, div{
+font-family: arial;
+}
+
+</style>
+</head>
+<body>
+
+<h2>HTML-kaavake, 21.3.2022</h2>
+
+<form action="index.php"> method="POST">
+  
+	<h2>Etunimi:</h2>
+	<input type="text" name="etunimi"/><br/>
+	
+	
+	<h2>Sukunimi:</h2>
+	<input type="text" name="sukunimi" /><br/>
+  
+	<h2>Ikä:</h2>
+	<input type="text" name="ika" /><br/><br/>
+		
+	<select name="nimike">
+			<option value="opiskelija">Opiskelija</option>
+			<option value="tyontekija">Työntekijä</option>
+			<option value="tutkija">Tutkija</option>
+			<option value="Jokin muu">Jokin muu</option>
+	</select>
+
+
+  
+	<input type="submit"value="Lähetä tiedot">
+	<input type="reset"value="Tyhjennä tiedot">
+
+</form>
+
+<div id="tiedot">
+<?php
+if(isset($_POST["Etunimi"])){
+echo("<h2>Sinusta keräämämme tiedot:</h2>");
+echo("Etunimesi: " . $etunimi . ", sukunimesi: " . $sukunimi . ", ikäsi:" . $ika);
+echo("<br/><br/>");
+echo("nimikesi: ".$nimike);
+}
+?>
+
+	
+	
+<p>
+
+</p>
+
+
+<div id="">
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+
+
+
+		
+<div>
+
+</body>
+</html>
