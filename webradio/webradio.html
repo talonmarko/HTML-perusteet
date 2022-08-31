@@ -11,6 +11,7 @@
 
 .slidecontainer {
 	width: 100%;
+	position: relative;
 }
 
 .slider {
@@ -44,7 +45,7 @@
 .slider::-moz-range-thumb {
   width: 30px;
   height: 30px;
-  border-radius: 20%;
+  border-radius: 2px;
   background: #A8C64E;
   cursor: pointer;
 }
@@ -57,8 +58,6 @@ body{
 #webradio{
 	border: 4px solid #000;
 	box-shadow: 0px 0px 15px #000;
-	background-color: #424142;
-	background: linear-gradient(0deg, #979899, #424142);
 	width: 400px;
 	margin: 30px auto auto;
 	height: 300px;
@@ -112,19 +111,152 @@ select:focus{
 	outline: none;
 }
 
-#controls button rng_volume{
+/*
+#myRange{
 	background-color: #A8C64E;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+*/
+
+.nappi{
+	background-color: #A8C64E;
+	height: 40px;
+	border-radius: 10px;
+	padding: 10px;
+	color: black;
+	//font-family: digital-7;
+	font-weight: bold;
+	font-size: 10px;
 }
 
+.style1{
+	background-color: #333;
+	width: 600px;
+	height: 450px;
+	border-radius: 10px;
+	font-family: "Digital-7";
+	color: grey;
+	font-size: 24px;
+	text-align: center;
+	line-height: 30px;
+	letter-spacing: 2px;
+}
 
+.style2{
+	background-color: #00788C;
+	width: 600px;
+	height: 450px;
+	border-radius: 10px;
+	font-family: "TEMPSITC", cursive !important;
+	font-size: 24px;
+	text-align: center;
+	line-height: 30px;
+	letter-spacing: 2px;
+	color: #A1A1A4;
+}
 
-	
+.style2 input{
+	font-family: "MS comic sans", cursive;
+	background-color: #1D1160;
+	color: #A1A1A4;
+	//box-shadow: ;
+}
+
+.style2 controls{
+		background-color: #1D1160;
+}
+
+.style2 input[type=range]::-webkit-slider-runnable-track{
+	background-color: #A1A1A4;
+}
+
+.style2 .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 60px;
+  margin-top: -5px;
+  border-radius: 2px;
+  background: #000;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.style3{
+	background-image: url("addams.JPG");
+	background-size: 140%;
+	background-position: -70px 0px;
+	width: 600px;
+	height: 450px;
+	border-radius: 10px;
+	font-family: "chiller", cursive !important;
+	font-weight: bold;
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	line-height: 30px;
+	letter-spacing: 2px;
+}
+
+.style3 option{
+	font-family: chiller;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	font-decoration: none;
+}
+
+.style3 input[type=range]::-webkit-slider-runnable-track {
+	background-color: #660000;
+	height: 50px;
+}
+
+.style3 input{
+	font-family: "chiller", cursive !important;
+	font-size: 20px;
+	background-color: #660000;
+	color: #A1A1A4;
+	text-align: center;
+	color: black;
+}
+
+.style3 .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  background: #A8C64E;
+  outline: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.style3 .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -5px;
+  height: 60px;
+  border-radius: 2px;
+  background: #000;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* yleisasetus slider-elementeille (ruottis) */
+.slider{
+	height: 40px !important;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}	
+
 </style>
 </head>
 <body>
 
 
-<div id="webradio">
+<div id="webradio" class="style1">
 	<label for="casts">casts</label>
 	
 	<select name="casts" id="stations" size="3" onChange="changeStation(this.value);">
@@ -136,56 +268,51 @@ select:focus{
 	
 	
 	<label for="controls">controls</label>
+	
 	<div id="controls">
-	<button value="play" id="btn_play">&#x23f5</button>
-	<button value="pause" id="btn_pause">&#x23f8</button>
-	<button value="stop" id="btn_stop">&#x23f9</button>
-	<button value="previous" id="btn_previous">&#x23ee</button>
-	<button value="next" id="btn_next">&#x23ed</button>
-	</div>
-	<div class="slidecontainer">
-	<input type="range" min="1" max="100" value="20" class="slider" id="myRange" onChange="changeVolume(this.value);">
-	
-</div>
-	
-	<div id=""></div>
-	<div id=""></div>
-	<div id=""></div>
+		<button value="play" id="btn_play" onClick="play();">&#x23f5</button>
+		<button value="stop" id="btn_stop" onClick="stopX();">&#x23f9</button>
+		<button value="previous" id="btn_previous" onClick="previous();">&#x23ee</button>
+		<button value="next" id="btn_next" onClick="next();">&#x23ed</button>
+		<button value="sortAZ" id="btn_sortAZ" onClick="sortAZ();">A-Z</button>
 
+	</div>
+		<div class="slidecontainer">
+			<input type="range" min="1" max="100" value="20" class="slider" id="myRange" onChange="changeVolume(this.value);">
+
+			<input type="button" value="style 1" class="nappi" onClick="changeStyle('style1');"/>
+			<input type="button" value="style 2" class="nappi" onClick="changeStyle('style2');"/>
+			<input type="button" value="style 3" class="nappi" onClick="changeStyle('style3');"/>
+			<input type="button" value="reset" class="nappi" onClick="resetStyles();"/>
+
+	
+		</div>
 </div>
 
 <audio src="#" autoplay hidden volume="0.25" id="NetCast"></audio>
 
 <script>
 var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-//output.innerHTML = slider.value;
+var output = document.getElementById("myRange");
+output.innerHTML = slider.value;
 
-slider.onInput = function(){
-  output.innerHTML = this.value;
-}
 
 function changeStation(what){
 	var element = document.getElementById("NetCast");	
 	element.src = what;
 }
 
-function playStation(){
-	var element = document.getElementById("netCast");
+function play(){
+	var element = document.getElementById("NetCast");
 		element.play();
 }
 		
-function pauseStation(){
-	var element = document.getElementById("netCast");
+function stopX(){
+	var element = document.getElementById("NetCast");
 		element.pause();
 }
 		
-function stopStation(){
-	var element = document.getElementById("netCast");
-		element.stop();
-}
-		
-function previousStation(){
+function previous(){
 	var stations = document.getElementById("stations");
 		if(stations.selectedIndex >= 1){
 		stations.selectedIndex--;
@@ -195,7 +322,7 @@ function previousStation(){
 		}
 	}
 		
-function nextStation(){
+function next(){
 		var stations = document.getElementById("stations");
 			if(stations.selectedIndex <= 3 ){
 			stations.selectedIndex++;
@@ -203,9 +330,20 @@ function nextStation(){
 }		
 
 function changeVolume(volume){
-	var element = document.getElementById("netCast");
-		element.volume=volume/100;
+    var audio = document.getElementById("NetCast");
+        audio.volume = volume/100;
+        console.log(volume/100);
 }		
+
+function changeStyle(style){
+	var webradio = document.getElementById("webradio");
+		webradio.setAttribute("class", style);
+	
+}
+
+function resetStyles(){
+	document.location.reload();
+}
 		
 </script>
 </body>
