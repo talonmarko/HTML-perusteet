@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+
+h1{
+	text-align: center;
+	font-family: digital-7;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#container{
+	position: relative;
+	border: 4px solid #000;
+	box-shadow: 0px 0px 15px #000;
+	width: 600px;
+	height: 400px;
+	margin: 30px auto auto;
+	padding: 15px;
+	text-align: center;
+	background: linear-gradient(45deg, #bdc3c7, #2c3e50);
+}
+
+#container .title{
+	width: 76px;
+	height: 60px;
+	float: left;
+	border: 2px solid black;
+	line-height: 60px;
+	margin: 2px;
+	font-family: digital-7;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.day{
+    width: 76px;
+	height: 60px;
+	float: left;
+	border: 2px solid black;
+	margin: 2px;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 60px;
+}
+
+.emptyday{
+    width: 80px;
+	height: 60px;
+	float: left;
+	margin: 2px;
+}
+
+</style>
+<script> 
+function createDays(month,start,end,offset){
+    var buffer = "";
+    var i = 1;
+	var a = 0;
+	
+	while(a<=offset){
+		buffer += '<div class="emptyday"></div>';
+		a++;
+		
+	}
+    
+    while(i<=end){
+        buffer += '<div class="day">' + i + '</div>';
+        i++;
+    }
+    
+    var elem = document.getElementById("calendar_days");
+    
+        elem.innerHTML = buffer;
+}
+
+
+
+
+</script>
+</head>
+<body>
+
+<h1 id="title">Syyskuu 2022</h1>
+
+<div id="container">
+		<div class="title">Ma</div>
+		<div class="title">Ti</div>
+		<div class="title">Ke</div>
+		<div class="title">To</div>
+		<div class="title">Pe</div>
+		<div class="title">La</div>
+		<div class="title">Su</div>
+	    <!--<div id="days">Days</div>-->
+	<div id="calendar">
+		<div id="calendar_days"></div>
+	</div>
+</div>
+
+<script>
+createDays(9,3,30,2);
+</script>
+
+</body>
+</html>
