@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+#game{
+	position: relative;
+	width: 800px;
+	height: 600px;
+	border: 5px solid #000;
+	border-radius: 10px;
+	margin: 50px auto;
+	box-shadow: 0px 0px 20px #000 inset;
+	background-color: #5CDB95;
+}
+
+#saldo{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 42px;
+	width: 105px;
+	border: 1px solid #000;
+	text-align: center;
+	background-color: ;
+	box-shadow: 0px 0px 8px #000 inset;
+	padding: 2px 6px;
+	border-radius: 24px;
+	background-color: #ccc;
+	min-width: 105px;
+}
+
+#reels{
+	position: relative;
+	top: 80px;
+	left: 50px;
+	width: 700px;
+	border: 4px solid #000;
+	border-radius: 10px;
+	display: inline-block;
+	box-shadow: 0px 0px 20px #000;
+	background-color: #EDF5E1;
+}
+
+#reel_1, #reel_2, #reel_3{
+	border: 4px solid #000;
+	border-radius: 10px;
+	position: relative;
+	float: left;
+	width: 200px;
+	height: 400px;
+	margin: 12px;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+#reel_1 img, #reel_2 img, #reel_3 img{
+	width: 200px;
+	height: 200px;
+}
+
+
+#roll{
+	width: 200px;
+	height: 50px;
+	background-color: #ccc;
+	position: absolute;
+	bottom: 15px;
+	left: 300px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: 4px;
+	border-radius: 10px;
+	font-family: monospace;
+}
+
+.overlap{
+	position: relative;
+	top: -100px;
+}
+
+#saldo::after{
+	content: "€";
+}
+
+.rolling{
+	animation: roller 0.05s linear infinite;
+}
+
+@keyframes roller{
+	0%{
+		top: -100px;
+	}
+	50%{
+		top: -300px;
+	}
+	100%{
+		top: 100px;
+	}
+}
+
+#roll:hover{
+	color: #000;
+	background-color: #ccc;
+	box-shadow: 0px 0px 20px #000;
+}
+
+/*.glass{
+	width: 800px;
+	height: 600px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 100;
+	background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(70,70,70,1) 3%, rgba(255,255,255,0) 15%, rgba(255,255,255,0) 85%, rgba(70,70,70,1) 97%, rgba(0,0,0,1) 100%);
+}*/
+
+</style>
+<script> function decreaseCoins(howMuch){
+	var saldo = document.getElementById("saldo");
+	if(saldo.innerText > 0){
+	    saldo.innerText = eval(saldo.innerText - howMuch);
+		roll();
+		console.log(saldo.innerText);
+	}
+	else{
+		alert("Insert More Coins!");
+	}
+}
+function increaseCoins(howMuch){
+
+}
+
+function reelRoll(which){
+	var reel = document.getElementById(which);
+	reel.setAttribute("class", "overlap rolling");
+}
+
+function reelStop(which){
+	var reel = document.getElementById(which);
+	reel.setAttribute("class", "overlap stopped");
+}
+
+function roll(){
+	
+	
+	reelRoll("reel_1_overlap");
+	reelRoll("reel_2_overlap");
+	reelRoll("reel_3_overlap");
+	
+/* sets intervals between reels stopping*/	
+	
+	setTimeout(function(){
+		reelStop("reel_1_overlap");
+	},1000);
+	
+	
+	setTimeout(function(){
+		reelStop("reel_2_overlap");
+	},1250);
+	
+	
+	setTimeout(function(){
+		reelStop("reel_3_overlap");
+	},1500);
+	
+	
+	setTimeout(function(){
+		randomImages();
+	},500);
+}
+
+function randomImages(){
+	var imageList = new Array;
+	imageList.push("kirsikka1.png", "mansikka1.png", "peruna1.png", "meloni1.png", "munakoiso1.png", "rypale1.png", "sieni1.png", "luovi1.png");
+	var images = document.getElementsByTagName("img");
+	
+	
+	var i = 0;
+	while(i <=images.length){
+	var randomi = Math.floor(Math.random()*imageList.length);
+		images[i].src=imageList[randomi];
+		i++;
+	}
+}
+</script>
+
+</head>
+<body onLoad="randomImages();">
+
+
+
+<div id="game">
+		<div id="saldo">10</div>
+		<div class="glass"></div>
+		
+		<div id="reels">
+		
+			<div id="reel_1">
+				<div class="overlap" id="reel_1_overlap">
+					<img src="kirsikka1.png" alt=""/>
+					<img src="mansikka1.png" alt=""/>
+					<img src="peruna1.png" alt=""/>
+					
+					<img src="meloni1.png" alt=""/>
+					<img src="munakoiso1.png" alt=""/>
+					<img src="rypale1.png" alt=""/>
+					
+					<img src="sieni1.png" alt=""/>
+					<img src="luovi1.png" alt=""/>
+
+				</div>
+			</div>
+
+			<div id="reel_2">
+				<div class="overlap" id="reel_2_overlap">
+					<img src="kirsikka1.png" alt=""/>
+					<img src="mansikka1.png" alt=""/>
+					<img src="peruna1.png" alt=""/>
+					
+					<img src="meloni1.png" alt=""/>
+					<img src="munakoiso1.png" alt=""/>
+					<img src="rypale1.png" alt=""/>
+					
+					<img src="sieni1.png" alt=""/>
+					<img src="luovi1.png" alt=""/>
+
+				</div>
+			</div>
+			
+			<div id="reel_3">
+				<div class="overlap" id="reel_3_overlap">
+					<img src="kirsikka1.png" alt=""/>
+					<img src="mansikka1.png" alt=""/>
+					<img src="peruna1.png" alt=""/>
+					
+					<img src="meloni1.png" alt=""/>
+					<img src="munakoiso1.png" alt=""/>
+					<img src="rypale1.png" alt=""/>
+					
+					<img src="sieni1.png" alt=""/>
+					<img src="luovi1.png" alt=""/>
+
+				</div>
+			</div>
+		</div>
+		
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+		<div id=""></div>
+<div id="roll" onClick="decreaseCoins(1);">ROLL</div>		
+</div>
+
+</body>
+
+</html>
