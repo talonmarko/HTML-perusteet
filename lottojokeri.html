@@ -54,6 +54,15 @@ p{
 	text-align: center;
     box-shadow: 0px 3px 8px #fffff;
     text-shadow: 0px 3px 2px #ccc;
+	transition: all 0.5s;
+}
+
+.blur{
+	filter: blur(20px);
+}
+
+.normal{
+	filter: none;
 }
 
 </style>
@@ -72,7 +81,7 @@ function generateJoker(){
     
 	buffer+="<div>";
     while(i<=7){
-		buffer+="<p>";
+		buffer+="<p class='blur'>";
 		buffer+=generateNumber(0,9);
 		buffer+="</p>";
         i++;
@@ -81,7 +90,34 @@ function generateJoker(){
 	
     buffer+="</div>";
 	jokeri.innerHTML = buffer;
+	
+	var numerot = document.getElementsByTagName("p");
+	
+		setTimeout(function(){
+		numerot[0].setAttribute("class", "normal");
+	},1000);
+			setTimeout(function(){
+		numerot[1].setAttribute("class", "normal");
+	},1500);
+			setTimeout(function(){
+		numerot[2].setAttribute("class", "normal");
+	},2000);
+			setTimeout(function(){
+		numerot[3].setAttribute("class", "normal");
+	},2500);
+			setTimeout(function(){
+		numerot[4].setAttribute("class", "normal");
+	},3000);
+			setTimeout(function(){
+		numerot[5].setAttribute("class", "normal");
+	},3500);
+			setTimeout(function(){
+		numerot[6].setAttribute("class", "normal");
+	},4000);
+
 }
+
+
 
 </script>
 
@@ -96,6 +132,9 @@ function generateJoker(){
 
 <div id="Arvo Jokeri">
 		<button value="arvoJokeri" id="generate" onClick="generateJoker();">Arvo Jokeri-rivi</button>				
+
+
+<div class=""></div>
 
 
 </div>
